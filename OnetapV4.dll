@@ -1,0 +1,676 @@
+
+
+--[Кста скрипт тебе очень понравится Сиди и кайфуй пока я делаю фикс на рапид фаер Удачи!]--
+
+
+
+local CoreGui = game:GetService("StarterGui")
+
+CoreGui:SetCore("SendNotification", {
+
+  Title = "Loading",
+
+  Text = "Please wait 5-20 sec",
+
+  Duration = 8,
+
+})
+
+
+
+
+
+wait(6)
+
+
+
+
+
+
+
+game:GetService("StarterGui"):SetCore("SendNotification", {
+
+  Title = "Information",
+
+  Text = "Loading assets",
+
+  Icon = "rbxthumb://type=Asset&id=13508183954&w=150&h=150",
+
+  Duration = 8,
+
+})
+
+
+
+
+
+
+
+
+
+
+
+wait(9)
+
+
+
+local fov = 100
+
+local RunService = game:GetService("RunService")
+
+local UserInputService = game:GetService("UserInputService")
+
+local Players = game:GetService("Players")
+
+local Cam = game.Workspace.CurrentCamera
+
+
+
+local FOVring = Drawing.new("Circle")
+
+FOVring.Visible = false
+
+FOVring.Thickness = 2
+
+FOVring.Color = Color3.fromRGB(255, 0, 0) 
+
+FOVring.Filled = false 
+
+FOVring.Radius = fov
+
+FOVring.Position = Cam.ViewportSize / 2
+
+
+
+local function updateDrawings()
+
+    local camViewportSize = Cam.ViewportSize
+
+    FOVring.Position = camViewportSize / 2
+
+end
+
+
+
+local function onKeyDown(input)
+
+    if input.KeyCode == Enum.KeyCode.Delete then
+
+        RunService:UnbindFromRenderStep("FOVUpdate")
+
+        FOVring:Remove()
+
+    end
+
+end
+
+
+
+local ESP = loadstring(game:HttpGet("https://raw.githubusercontent.com/linemaster2/esp-library/main/library.lua"))();
+
+
+
+
+
+ESP.Enabled = false;
+
+ESP.ShowBox = false;
+
+ESP.ShowName = false;
+
+ESP.ShowHealth = false;
+
+ESP.ShowTracer = false;
+
+ESP.ShowDistance = false;
+
+ESP.ShowSkeletons = false;
+
+
+
+    local ESP_SETTINGS = {
+
+        BoxOutlineColor = Color3.new(1, 1, 1),
+
+        BoxColor = Color3.new(1, 1, 1),
+
+        NameColor = Color3.new(1, 1, 1),
+
+        HealthOutlineColor = Color3.new(0, 0, 0),
+
+        HealthHighColor = Color3.new(0, 1, 0),
+
+        HealthLowColor = Color3.new(1, 0, 0),
+
+        CharSize = Vector2.new(4, 6),
+
+        Teamcheck = false,
+
+        WallCheck = false,
+
+        Enabled = false,
+
+        ShowBox = false,
+
+        BoxType = "2D",
+
+        ShowName = false,
+
+        ShowHealth = false,
+
+        ShowDistance = false,
+
+        ShowSkeletons = false,
+
+        ShowTracer = false,
+
+        TracerColor = Color3.new(1, 1, 1), 
+
+        TracerThickness = 2,
+
+        SkeletonsColor = Color3.new(1, 1, 1),
+
+        TracerPosition = "Bottom",
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+loadstring(game:HttpGet(("https://raw.githubusercontent.com/REDzHUB/LibraryV2/main/redzLib")))()
+
+MakeWindow({
+
+  Hub = {
+
+    Title = "Onetap | Arsenal | Beta",
+
+    Animation = "by : SanTeam"
+
+  },
+
+  Key = {
+
+    KeySystem = false,
+
+    Title = "Onetap | Key System",
+
+    Description = "Press get key to copy link",
+
+    KeyLink = "https://workink.net/1Vmh/m1eh3zob",
+
+    Keys = {"S49hq0prnLOL"},
+
+    Notifi = {
+
+      Notifications = true,
+
+      CorrectKey = "Injecting script...",
+
+      Incorrectkey = "Key is incorrect",
+
+      CopyKeyLink = "Link copied to keyboard"
+
+    }
+
+  }
+
+})
+
+
+
+MakeNotifi({
+
+  Title = "Onetap",
+
+  Text = "Hi",
+
+  Time = 3
+
+})
+
+
+
+MakeNotifi({
+
+  Title = "Onetap",
+
+  Text = "Hi",
+
+  Time = 4
+
+})
+
+
+
+
+
+MinimizeButton({
+
+  Image = "",
+
+  Size = {40, 40},
+
+  Color = Color3.fromRGB(10, 10, 10),
+
+  Corner = true,
+
+  Stroke = false,
+
+  StrokeColor = Color3.fromRGB(255, 0, 0)
+
+})
+
+
+
+
+
+local Main = MakeTab({Name = "Aim"})
+
+
+
+AddButton(Main, {
+
+  Name = "Silent aim (maybe miss)",
+
+  Callback = function()
+
+    function getplrsname() for i,v in pairs(game:GetChildren()) do if v.ClassName == "Players" then return v.Name end end end local players = getplrsname() local plr = game[players].LocalPlayer coroutine.resume(coroutine.create(function() while wait(1) do coroutine.resume(coroutine.create(function() for _,v in pairs(game[players]:GetPlayers()) do if v.Name ~= plr.Name and v.Character then v.Character.RightUpperLeg.CanCollide = false v.Character.RightUpperLeg.Transparency = 75 v.Character.RightUpperLeg.Size = Vector3.new(21,21,21) v.Character.LeftUpperLeg.CanCollide = false v.Character.LeftUpperLeg.Transparency = 75 v.Character.LeftUpperLeg.Size = Vector3.new(21,21,21) v.Character.HeadHB.CanCollide = false v.Character.HeadHB.Transparency = 75 v.Character.HeadHB.Size = Vector3.new(21,21,21) v.Character.HumanoidRootPart.CanCollide = false v.Character.HumanoidRootPart.Transparency = 75 v.Character.HumanoidRootPart.Size = Vector3.new(21,21,21) end end end)) end end))
+
+  end
+
+})
+
+
+
+AddButton(Main, {
+
+  Name = "Infinite ammo",
+
+  Callback = function()
+
+    while wait() do	game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount.Value = 999	game:GetService("Players").LocalPlayer.PlayerGui.GUI.Client.Variables.ammocount2.Value = 999
+
+end
+
+end
+
+})
+
+
+
+
+
+AddButton(Main, {
+
+  Name = "Rapid Fire (not work)",
+
+  Callback = function()
+
+    for i, v in pairs(replicationstorage.Weapons:GetDescendants()) do
+
+
+
+ if v.Name == "FireRate" then
+
+
+
+       v.Value = 0.05
+
+   end
+
+end
+
+  	end    
+
+})
+
+
+
+
+
+
+
+
+
+
+
+local Label = AddTextLabel(Aim, "Status:Working")
+
+local Label = AddTextLabel(Status, "Undetected")
+
+
+
+
+
+
+
+
+
+local Main = MakeTab({Name = "esp v2"})
+
+
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Enabled",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.Enabled = Value;
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Name",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.ShowName = Value;
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Box",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.ShowBox = Value;
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Tracer",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.ShowTracer = Value;
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Health",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.ShowHealth = Value;
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Skeletons",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.ShowSkeletons = Value;
+
+  end
+
+})
+
+
+
+
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Distance",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.ShowDistance = Value;
+
+  end
+
+})
+
+
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Team check",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.Teamcheck = Value;	
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Wall check",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    ESP.WallCheck = Value;
+
+  end
+
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+local Dropdown = AddDropdown(Main, {
+
+  Name = "Tracer",
+
+  Options = {"Bottom", "Top", "Middle"},
+
+  Default = "Top",
+
+  Callback = function(Value)
+
+    ESP.TracerPosition = Value;
+
+  end
+
+})
+
+
+
+local Dropdown = AddDropdown(Main, {
+
+  Name = "Box",
+
+  Options = {"2D", "Corner Box Esp"},
+
+  Default = "2D",
+
+  Callback = function(Value)
+
+    ESP.BoxType = Value
+
+  end
+
+})
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Fov",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    FOVring.Visible = Value
+
+end
+
+})
+
+
+
+
+
+local Toggle = AddToggle(Main, {
+
+  Name = "Filled Fov",
+
+  Default = false,
+
+  Callback = function(Value)
+
+    FOVring.Filled = Value
+
+end
+
+})
+
+
+
+local Slider = AddSlider(Main, {
+
+  Name = "Slider teste",
+
+  MinValue = 40,
+
+  MaxValue = 300,
+
+  Default = 40,
+
+  Increase = 1,
+
+  Callback = function(Value)
+
+    FOVring.Radius = Value
+
+  end
+
+})
+
+
+
+AddColorPicker(Main, {
+
+  Name = "Color picker teste",
+
+  Default = Color3.fromRGB(255, 255, 0),
+
+  Callback = function(Value)
+
+    FOVring.Color = Value
+
+  end
+
+})
+
+
+
+
+
+
+
+
+
+local Main = MakeTab({Name = "More"})
+
+
+
+AddButton(Main, {
+
+  Name = "Check Version",
+
+  Callback = function()
+
+    MakeNotifi({
+
+  Title = "Onetap",
+
+  Text = "You have the beta version",
+
+  Time = 5
+
+})
+
+  end
+
+})
+
+
+
+wait(30)
+
+
+
+print("onetap:Missed by shit resolver")
+
+
+
+
+
+print('onetap:Unknown error 50% ban (maybe) ')
+
+
+
