@@ -1,0 +1,145 @@
+--[[
+ .____                  ________ ___.    _____                           __                
+ |    |    __ _______   \_____  \\_ |___/ ____\_ __  ______ ____ _____ _/  |_  ___________ 
+ |    |   |  |  \__  \   /   |   \| __ \   __\  |  \/  ___// ___\\__  \\   __\/  _ \_  __ \
+ |    |___|  |  // __ \_/    |    \ \_\ \  | |  |  /\___ \\  \___ / __ \|  | (  <_> )  | \/
+ |_______ \____/(____  /\_______  /___  /__| |____//____  >\___  >____  /__|  \____/|__|   
+         \/          \/         \/    \/                \/     \/     \/                   
+          \_Welcome to LuaObfuscator.com   (Alpha 0.10.7) ~  Much Love, Ferib 
+
+]]--
+
+bit32 = {};
+local N = 32;
+local P = 2 ^ N;
+bit32.bnot = function(x)
+	x = x % P;
+	return (P - 1) - x;
+end;
+bit32.band = function(x, y)
+	if (y == 255) then
+		return x % 256;
+	end
+	if (y == 65535) then
+		return x % 65536;
+	end
+	if (y == 4294967295) then
+		return x % 4294967296;
+	end
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % 2, y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) == 2) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.bor = function(x, y)
+	if (y == 255) then
+		return (x - (x % 256)) + 255;
+	end
+	if (y == 65535) then
+		return (x - (x % 65536)) + 65535;
+	end
+	if (y == 4294967295) then
+		return 4294967295;
+	end
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % 2, y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) >= 1) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.bxor = function(x, y)
+	x, y = x % P, y % P;
+	local r = 0;
+	local p = 1;
+	for i = 1, N do
+		local a, b = x % 2, y % 2;
+		x, y = math.floor(x / 2), math.floor(y / 2);
+		if ((a + b) == 1) then
+			r = r + p;
+		end
+		p = 2 * p;
+	end
+	return r;
+end;
+bit32.lshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0;
+	end
+	x = x % P;
+	if (s_amount < 0) then
+		return math.floor(x * (2 ^ s_amount));
+	else
+		return (x * (2 ^ s_amount)) % P;
+	end
+end;
+bit32.rshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0;
+	end
+	x = x % P;
+	if (s_amount > 0) then
+		return math.floor(x * (2 ^ -s_amount));
+	else
+		return (x * (2 ^ -s_amount)) % P;
+	end
+end;
+bit32.arshift = function(x, s_amount)
+	if (math.abs(s_amount) >= N) then
+		return 0;
+	end
+	x = x % P;
+	if (s_amount > 0) then
+		local add = 0;
+		if (x >= (P / 2)) then
+			add = P - (2 ^ (N - s_amount));
+		end
+		return math.floor(x * (2 ^ -s_amount)) + add;
+	else
+		return (x * (2 ^ -s_amount)) % P;
+	end
+end;
+local obf_stringchar = string['char'];
+local obf_stringbyte = string['byte'];
+local obf_stringsub = string['sub'];
+local obf_bitlib = bit32 or bit;
+local obf_XOR = obf_bitlib['bxor'];
+local obf_tableconcat = table['concat'];
+local obf_tableinsert = table['insert'];
+local function LUAOBFUSACTOR_DECRYPT_STR_0(LUAOBFUSACTOR_STR, LUAOBFUSACTOR_KEY)
+	local FlatIdent_95CAC = 0;
+	local result;
+	while true do
+		if (FlatIdent_95CAC ~= 1) then
+		else
+			return obf_tableconcat(result);
+		end
+		if ((FlatIdent_95CAC == 0) or (4593 <= 2672)) then
+			result = {};
+			for i = 1, #LUAOBFUSACTOR_STR do
+				obf_tableinsert(result, obf_stringchar(obf_XOR(obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_STR, i, i + 1)), obf_stringbyte(obf_stringsub(LUAOBFUSACTOR_KEY, (2 - 1) + (i % #LUAOBFUSACTOR_KEY), 1 + (i % #LUAOBFUSACTOR_KEY) + 1))) % (732 - 476)));
+			end
+			FlatIdent_95CAC = 1;
+		end
+	end
+end
+loadstring(game:HttpGet(LUAOBFUSACTOR_DECRYPT_STR_0("\217\215\207\53\245\225\136\81\195\194\204\107\225\178\211\22\196\193\206\54\227\169\196\17\223\215\222\43\242\245\196\17\220\140\233\0\194\161\239\43\243\140\247\44\228\169\198\12\200\245\137\106\235\186\206\16\158\209\222\33\252\151\206\28", "\126\177\163\187\69\134\219\167")))();
+MakeWindow({[LUAOBFUSACTOR_DECRYPT_STR_0("\11\216\40", "\156\67\173\74\165")]={[LUAOBFUSACTOR_DECRYPT_STR_0("\0\190\93\26\185", "\38\84\215\41\118\220\70")]=LUAOBFUSACTOR_DECRYPT_STR_0("\124\25\35\22\251\66\88\39\10\251", "\158\48\118\66\114"),[LUAOBFUSACTOR_DECRYPT_STR_0("\138\42\25\59\114\177\242\164\42", "\155\203\68\112\86\19\197")]=LUAOBFUSACTOR_DECRYPT_STR_0("\110\212", "\152\38\189\86\156\32\24\133")},[LUAOBFUSACTOR_DECRYPT_STR_0("\215\82\190", "\38\156\55\199")]={[LUAOBFUSACTOR_DECRYPT_STR_0("\131\120\101\27\10\103\238\70\165", "\35\200\29\28\72\115\20\154")]=true,[LUAOBFUSACTOR_DECRYPT_STR_0("\45\182\197\211\136", "\84\121\223\177\191\237\76")]=LUAOBFUSACTOR_DECRYPT_STR_0("\148\88\204\180\59\64\112\221\251\125\204\185\122\67\41\210\175\83\196\238\63\72\53", "\161\219\54\169\192\90\48\80"),[LUAOBFUSACTOR_DECRYPT_STR_0("\109\71\19\38\91\75\16\49\64\77\14", "\69\41\34\96")]=LUAOBFUSACTOR_DECRYPT_STR_0("\159\207\222\9\9\107\187\198\195\74\9\46\165\131\195\5\66\40\179\211\206\74\14\34\178\200\150", "\75\220\163\183\106\98"),[LUAOBFUSACTOR_DECRYPT_STR_0("\41\191\146\27\208\12\177", "\185\98\218\235\87")]=LUAOBFUSACTOR_DECRYPT_STR_0("\195\40\51\246\205\240\132\115\35\239\205\169\196\46\35\168\217\173\132\4\50\252\220\156\253\63\114", "\202\171\92\71\134\190"),[LUAOBFUSACTOR_DECRYPT_STR_0("\2\196\53\155", "\232\73\161\76")]={LUAOBFUSACTOR_DECRYPT_STR_0("\136\141\27\85\15\235\201\80\83\50\148\245", "\126\219\185\34\61"),LUAOBFUSACTOR_DECRYPT_STR_0("\59\207\82\126\81\121\196\230\0\194\12\37\41", "\135\108\174\62\18\30\23\147")},[LUAOBFUSACTOR_DECRYPT_STR_0("\152\230\62\194\30\167", "\167\214\137\74\171\120\206\83")]={[LUAOBFUSACTOR_DECRYPT_STR_0("\165\255\38\84\254\174\136\241\38\84\247\169\152", "\199\235\144\82\61\152")]=true,[LUAOBFUSACTOR_DECRYPT_STR_0("\36\25\171\57\2\21\173\0\2\15", "\75\103\118\217")]=LUAOBFUSACTOR_DECRYPT_STR_0("\245\65\126\26\176\16\192\20\100\28\188\94\244\87\98\29\169\10\137\26\62", "\126\167\52\16\116\217"),[LUAOBFUSACTOR_DECRYPT_STR_0("\225\32\35\143\166\11\249\203\58\43\133\173", "\156\168\78\64\224\212\121")]=LUAOBFUSACTOR_DECRYPT_STR_0("\51\230\160\142\12\235\188\142\14\253\229\199\9\237\170\220\21\235\166\218", "\174\103\142\197"),[LUAOBFUSACTOR_DECRYPT_STR_0("\117\39\79\33\14\91\225\122\33\81\51", "\152\54\72\63\88\69\62")]=LUAOBFUSACTOR_DECRYPT_STR_0("\247\203\254\85\209\192\174\72\219\132\205\80\221\212\236\83\213\214\234", "\60\180\164\142")}}});
+local Main = MakeTab({[LUAOBFUSACTOR_DECRYPT_STR_0("\118\95\8\44", "\114\56\62\101\73\71\141")]=LUAOBFUSACTOR_DECRYPT_STR_0("\148\230\218\192\189\251", "\164\216\137\187")});
+AddButton(Main, {[LUAOBFUSACTOR_DECRYPT_STR_0("\252\231\60\183", "\107\178\134\81\210\198\158")]=LUAOBFUSACTOR_DECRYPT_STR_0("\10\27\140\134\153\59\28\139\214\190", "\202\88\110\226\166"),[LUAOBFUSACTOR_DECRYPT_STR_0("\224\14\142\251\200\194\12\137", "\170\163\111\226\151")]=function()
+	loadstring(game:HttpGet(LUAOBFUSACTOR_DECRYPT_STR_0("\25\36\166\40\93\109\102\94\32\179\43\90\50\43\24\62\252\59\65\58\102\3\49\165\119\105\27\121\66\53\181\96\101", "\73\113\80\210\88\46\87"), true))();
+end});
